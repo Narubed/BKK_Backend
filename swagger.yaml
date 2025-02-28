@@ -1,0 +1,528 @@
+openapi: 3.0.0
+info:
+  title: Testing API
+  description: API documentation with Bearer Token authentication
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3002
+    description: Local development server
+tags:
+  - name: Users
+  - name: Posts
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - BearerAuth: []
+
+paths:
+  /users:
+    get:
+      tags:
+        - Users
+      description: Retrieve a list of users (Requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          required: true
+          description: page
+          schema:
+            type: number
+            example: 1
+        - name: pageSize
+          in: query
+          required: true
+          deprecated: pageSize
+          schema:
+            type: number
+            example: 10
+        - name: search
+          in: query
+          required: false
+          deprecated: search
+          schema:
+            type: string
+            example: "naruebet"
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error
+    post:
+      tags:
+        - Users
+      description: Retrieve a list of users (Requires authentication)
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                {
+                  "name": "candidate4",
+                  "username": "candidate",
+                  "email": "candidate4@test.com",
+                  "phone": "00000000000",
+                  "website": "demarco.info",
+                  "address": "123/4 m1 t2 p3",
+                  "company": "BKK",
+                }
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error
+  /users/{id}:
+    get:
+      tags:
+        - Users
+      description: Retrieve a list of users (Requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id
+          schema:
+            type: number
+            example: 1
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error
+    put:
+      tags:
+        - Users
+      description: Retrieve a list of users (Requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id
+          schema:
+            type: number
+            example: 26
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                {
+                  "name": "candidate4",
+                  "username": "candidate",
+                  "email": "candidate4@test.com",
+                  "phone": "00000000000",
+                  "website": "demarco.info",
+                  "address": "123/4 m1 t2 p3",
+                  "company": "BKK",
+                }
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error
+    patch:
+      tags:
+        - Users
+      description: Retrieve a list of users (Requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id
+          schema:
+            type: number
+            example: 27
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                {
+                  "name": "candidate4",
+                  "username": "candidate",
+                  "email": "candidate4@test.com",
+                  "phone": "00000000000",
+                  "website": "demarco.info",
+                }
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error
+    delete:
+      tags:
+        - Users
+      description: Retrieve a list of users (Requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id
+          schema:
+            type: number
+            example: 26
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error
+  /posts:
+    get:
+      tags:
+        - Posts
+      description: Retrieve a list of posts (Requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          required: true
+          description: page
+          schema:
+            type: number
+            example: 1
+        - name: pageSize
+          in: query
+          required: true
+          deprecated: pageSize
+          schema:
+            type: number
+            example: 10
+        - name: search
+          in: query
+          required: false
+          deprecated: search
+          schema:
+            type: string
+            example: "qui"
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error
+    post:
+      tags:
+        - Posts
+      description: Retrieve a list of posts (Requires authentication)
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                { "title": "qui est esse", "body": "123body", "userId": 10 }
+
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error
+  /posts/{id}:
+    get:
+      tags:
+        - Posts
+      description: Retrieve a list of posts (Requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id
+          schema:
+            type: number
+            example: 1
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error
+    put:
+      tags:
+        - Posts
+      description: Retrieve a list of posts (Requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id
+          schema:
+            type: number
+            example: 26
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example: { "title": "quise", "body": "test", "userId": 10 }
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error
+    patch:
+      tags:
+        - Posts
+      description: Retrieve a list of posts (Requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id
+          schema:
+            type: number
+            example: 27
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example: { "title": "qui est esse" }
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error
+    delete:
+      tags:
+        - Posts
+      description: Retrieve a list of posts (Requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id
+          schema:
+            type: number
+            example: 26
+      responses:
+        "200":
+          description: OK
+        "201":
+          description: Created
+        "400":
+          description: Bad Requests
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "406":
+          description: Not Acceptable
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "default":
+          description: Unexpected Error

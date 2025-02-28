@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Shadow Database
+}
+
+model User {
+  id       Int     @id @default(autoincrement()) // (Primary Key)
+  name     String
+  username String
+  email    String  @unique
+  phone    String?
+  website  String?
+  posts    Post[] // One-to-Many
+
+  address String?
+  company String?
+}
+
+model Post {
+  id     Int    @id @default(autoincrement()) // (Primary Key)
+  title  String
+  body   String
+  userId Int // FK อ้างถึง User
+  user   User   @relation(fields: [userId], references: [id]) // ตั้งค่า Foreign Key
+}

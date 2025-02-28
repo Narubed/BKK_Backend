@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  backend:
+    build: .
+    container_name: backend
+    restart: always
+    ports:
+      - "3002:3002"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    # depends_on:
+    #   - db
+  # db:
+  #   image: mcr.microsoft.com/mssql/server:2022-latest
+  #   container_name: my-db
+  #   restart: always
+  #   environment:
+  #     SA_PASSWORD: "YourStrong!Passw0rd"
+  #     ACCEPT_EULA: "Y"
+  #   ports:
+  #     - "1433:1433"
+  #   volumes:
+  #     - mssql_data:/var/opt/mssql
+
+volumes:
+  mssql_data:

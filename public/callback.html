@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Login...</title>
+    <script>
+        window.onload = function() {
+            const fragment = new URLSearchParams(window.location.hash.substring(1));
+            const id_token = fragment.get("id_token");
+
+            if (id_token) {
+                console.log("ID Token:", id_token);
+                window.location.href = "/callback?id_token=" + encodeURIComponent(id_token);
+            } else {
+                document.body.innerHTML = "<h1>Error: ID Token not found</h1>";
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>Processing Login...</h1>
+</body>
+</html>
